@@ -9,9 +9,8 @@ To start out I will be creating a Driver class which will resemble the following
 Trip_t structure:
 * string startTime;
 * string stopTime;
-* double startTimeMinutes;  // In Minutes from midnight
-* double stopTimeMinutes;   // In Minutes from midnight
-* double milesDriven
+* double milesDriven;
+* double averageSpeed;
 
 Driver_t structure:
 * double totalTimeDriven;
