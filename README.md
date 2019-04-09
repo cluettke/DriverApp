@@ -7,8 +7,10 @@ To start out I will be creating a Driver class which will resemble the following
 # Class Driver
 
 Trip_t structure:
-* double startTime;  // In Minutes from midnight
-* double stopTime;   // In Minutes from midnight
+* string startTime;
+* string stopTime;
+* double startTimeMinutes;  // In Minutes from midnight
+* double stopTimeMinutes;   // In Minutes from midnight
 * double milesDriven
 
 Driver_t structure:
