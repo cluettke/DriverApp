@@ -28,6 +28,10 @@ int Driver::ConvertTimeToMinutes(string time) {
 	iMinutes = iHours * 60 + iMinutes;
 	return iMinutes;
 }
-double Driver::CalculateAverageSpeed(double time, double miles) {
-	return 0.0;
+
+// @Time is in Minutes
+double Driver::CalculateAverageSpeed(int time, double miles) {
+	double averageSpeedMph = 0.0;
+	averageSpeedMph = (miles / time) * 60.0;
+	return averageSpeedMph;
 }

@@ -13,8 +13,9 @@ using namespace std;
 typedef struct {
 	string startTime;
 	string stopTime;
+	int tripLength;			// Minutes
 	double milesDriven;
-	double averageSpeed;
+	double averageSpeed;	// MPH
 } Trip_t;
 
 class Driver {
@@ -24,7 +25,7 @@ public:
 	void AddTrip(string driverName, Trip_t trip);
 	void GenerateReport(string driverName);
 	int ConvertTimeToMinutes(string time);
-	double CalculateAverageSpeed(double time, double miles);
+	double CalculateAverageSpeed(int time, double miles);
 
 private:
 	typedef struct {
