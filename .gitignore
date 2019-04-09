@@ -32,3 +32,8 @@
 *.app
 /.vs
 /Debug
+/DriverApp/x64/Debug/DriverApp.tlog
+/DriverApp/x64/Debug/vc141.pdb
+/DriverApp/x64/Debug/vc141.idb
+/DriverApp/x64/Debug/DriverApp.log
+/x64/Debug
