@@ -20,3 +20,14 @@ TEST(DriverAppTest, WhenCalculateAverageSpeedIsCalledItReturnsTheCorrectSpeed) {
 	EXPECT_DOUBLE_EQ(30.5, driver.CalculateAverageSpeed(120, 61.0));
 	EXPECT_DOUBLE_EQ(34.6, driver.CalculateAverageSpeed(30, 17.3));
 }
+
+TEST(DriverAppTest, WhenDriverIsRegisteredResultIsSuccess) {
+	Driver driver;
+	EXPECT_EQ("Chris has been entered into the driver database! \n", driver.RegisterDriver("Chris"));
+}
+
+TEST(DriverAppTest, WhenRegisterDriverIsCalledWithARegisteredDriverItReturnsDriverAlreadyExists) {
+	Driver driver;
+	EXPECT_EQ("Chris has been entered into the driver database! \n", driver.RegisterDriver("Chris"));
+	EXPECT_EQ("Chris already exists in the driver database! \n", driver.RegisterDriver("Chris"));
+}

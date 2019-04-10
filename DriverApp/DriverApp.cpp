@@ -8,8 +8,20 @@
 bool Driver::ReadFile(string file) {
 	return false;
 }
-void Driver::RegisterDriver(string driverName) {
-	return;
+string Driver::RegisterDriver(string driverName) {
+	string result = "";
+	Driver_t driver;
+	driver.totalMilesDriven = 0;
+	driver.totalTimeDriven = 0;
+	auto iter = driverDatabase.find(driverName);
+	if (iter == driverDatabase.end()) {
+		driverDatabase.insert(pair<string, Driver_t>(driverName, driver));
+		result =  driverName + " has been entered into the driver database! \n";
+	}
+	else {
+		result = driverName + " already exists in the driver database! \n";
+	}
+	return result;
 }
 void Driver::AddTrip(string driverName, Trip_t trip) {
 	return;

@@ -21,7 +21,7 @@ typedef struct {
 class Driver {
 public:
 	bool ReadFile(string file);
-	void RegisterDriver(string driverName);
+	string RegisterDriver(string driverName);
 	void AddTrip(string driverName, Trip_t trip);
 	void GenerateReport(string driverName);
 	int ConvertTimeToMinutes(string time);
