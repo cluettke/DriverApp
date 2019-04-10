@@ -16,10 +16,10 @@ Trip_t structure:
 Driver_t structure:
 * double totalTimeDriven;
 * double totalMilesDriven;
-* Trip_t trips;
+* vector<Trip_t> trips;
 
 Registered drivers will be stored in a std::map object
-* map<string, vector<Driver_t>>;
+* map<string, Driver_t> driverDatabase;
   
 The following functions will be created to allow for easy use of the Driver class.
 
@@ -27,9 +27,9 @@ The following functions will be created to allow for easy use of the Driver clas
 * bool ReadFile(string file);
 * string RegisterDriver(string driverName);
 * string AddTrip(string driverName, Trip_t trip);
-* string GenerateDriverReport(string driverName);
-* double ConvertTimeToMinutes(string time);
-* double CalculateAverageSpeed(Trip_t trip);
+* string GenerateReport();
+* int ConvertTimeToMinutes(string time);
+* double CalculateAverageSpeed(int time, double miles);
 
 # Testing Method
 In addition to testing overall functionality using a sample input.txt file I will be writing unit tests for the individual functions using the Googletest framework. 
