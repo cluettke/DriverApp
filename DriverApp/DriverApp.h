@@ -23,13 +23,13 @@ public:
 	bool ReadFile(string file);
 	string RegisterDriver(string driverName);
 	string AddTrip(string driverName, Trip_t trip);
-	string GenerateReport(string driverName);
+	string GenerateReport();
 	int ConvertTimeToMinutes(string time);
 	double CalculateAverageSpeed(int time, double miles);
 
 private:
 	typedef struct {
-		double totalTimeDriven;
+		int totalTimeDriven;
 		double totalMilesDriven;
 		vector<Trip_t> trips;
 	} Driver_t;

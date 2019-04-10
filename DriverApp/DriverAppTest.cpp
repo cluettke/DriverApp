@@ -65,5 +65,17 @@ TEST(DriverAppTest, WhenAddTripIsCalledWithAnInValidTripItDoesNotAddItToTheDatab
 	EXPECT_EQ("Invalid trip! Average speed greater than 100 mph \n", driver.AddTrip("Chris", trip));
 }
 
+TEST(DriverAppTest, WhenGenerateReportIsCalledTheOutputIsCorrect) {
+	Driver driver;
+	Trip_t trip;
+	driver.RegisterDriver("Chris");
+	driver.RegisterDriver("Don");
+	trip.startTime = "10:15";
+	trip.stopTime = "10:45";
+	trip.milesDriven = 30.0;
+	driver.AddTrip("Chris", trip);
+	EXPECT_EQ("Chris: 30 miles @ 60 mph \nDon: 0 miles \n", driver.GenerateReport());
+}
+
 
 

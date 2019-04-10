@@ -54,8 +54,21 @@ string Driver::AddTrip(string driverName, Trip_t trip) {
 	return "Add trip was unsuccessful \n";
 }
 
-string Driver::GenerateReport(string driverName) {
-	return "";
+string Driver::GenerateReport() {
+	int averageSpeed = 0;
+	map<string, Driver_t>::iterator iter;
+	string result = "";
+	for (iter = driverDatabase.begin(); iter != driverDatabase.end(); iter++) {
+		if (iter->second.totalMilesDriven > 0) {
+			averageSpeed = (int)CalculateAverageSpeed(iter->second.totalTimeDriven, iter->second.totalMilesDriven);
+			result += iter->first + ": " + to_string((int)iter->second.totalMilesDriven)
+				+ " miles @ " + to_string(averageSpeed) + " mph \n";
+		}
+		else {
+			result += iter->first + ": 0 miles \n";
+		}
+	}
+	return result;
 }
 
 int Driver::ConvertTimeToMinutes(string time) {
