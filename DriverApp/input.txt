@@ -1,11 +1,9 @@
 Driver Chris
-Trip Chris 10:10 12:22 133.4
-Trip Chris 05:27 05:49 3.4
+Trip Chris 10:13 11:27 45.7
 Driver Tom
-Driver John
 Driver Steve
-Trip John 19:32 23:49 187
+Driver John
+Trip Chris 17:10 19:18 121.2
 Trip Tom 07:15 07:45 17.3
-Trip Tom 06:12 06:32 21.8
-Trip John 12:01 13:16 42.0
-Trip Chris
+Trip Steve 06:12 06:32 21.8
+Trip Tom 12:01 13:16 42.0

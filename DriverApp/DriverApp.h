@@ -3,6 +3,7 @@
 // Date: April 9, 2019
 
 #pragma once
+#include <fstream>
 #include <iostream>
 #include <map>
 #include <sstream>

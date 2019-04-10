@@ -2,11 +2,47 @@
 // Author: Chris Luettke
 // Date: April 9, 2019
 
-
 #include "DriverApp.h"
 
 bool Driver::ReadFile(string file) {
-	return false;
+	ifstream inputFile (file);
+	string line, value, driverName = "";
+	if (inputFile.is_open()) {
+		while (getline(inputFile, line)) {
+			// Get command
+			istringstream iss(line);
+			getline(iss, value, ' ');
+			if (value == "Driver") {
+				getline(iss, driverName);
+				RegisterDriver(driverName);
+			}
+			else if (value == "Trip") {
+				Trip_t trip;
+				// Get Driver 
+				getline(iss, driverName, ' ');
+				// Get start time
+				getline(iss, value, ' ');
+				trip.startTime = value;
+				// Get stop time
+				getline(iss, value, ' ');
+				trip.stopTime = value;
+				// Get miles driven
+				getline(iss, value, ' ');
+				trip.milesDriven = stod(value);
+
+				AddTrip(driverName, trip);
+			}
+			else {
+				cout << "Invalid input command: " << value << "\n";
+			}
+		}
+	}
+	else {
+		cout << "Error opening file \n";
+		return false;
+	}
+	cout << GenerateReport();
+	return true;
 }
 
 string Driver::RegisterDriver(string driverName) {

@@ -123,9 +123,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\googletest-master\googletest\src\gtest-all.cc" />
-    <ClCompile Include="..\googletest-master\googletest\src\gtest_main.cc" />
     <ClCompile Include="DriverApp.cpp" />
     <ClCompile Include="DriverAppTest.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
