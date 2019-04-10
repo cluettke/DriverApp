@@ -31,3 +31,39 @@ TEST(DriverAppTest, WhenRegisterDriverIsCalledWithARegisteredDriverItReturnsDriv
 	EXPECT_EQ("Chris has been entered into the driver database! \n", driver.RegisterDriver("Chris"));
 	EXPECT_EQ("Chris already exists in the driver database! \n", driver.RegisterDriver("Chris"));
 }
+
+TEST(DriverAppTest, WhenAddTripIsCalledForADriverThatDoesntExistReturnMessageStatesThat) {
+	Driver driver;
+	Trip_t trip;
+	trip.startTime = "10:15";
+	trip.stopTime = "10:45";
+	trip.milesDriven = 20.5;
+	EXPECT_EQ("Error adding trip! Chris doesn't exist in the database \n", driver.AddTrip("Chris", trip));
+}
+
+TEST(DriverAppTest, WhenAddTripIsCalledWithValidTripItAddsItToTheDatabase) {
+	Driver driver;
+	Trip_t trip;
+	driver.RegisterDriver("Chris");
+	trip.startTime = "10:15";
+	trip.stopTime = "10:45";
+	trip.milesDriven = 20.5;
+	EXPECT_EQ("Trip was successfully added to database \n", driver.AddTrip("Chris", trip));
+}
+
+TEST(DriverAppTest, WhenAddTripIsCalledWithAnInValidTripItDoesNotAddItToTheDatabase) {
+	Driver driver;
+	Trip_t trip;
+	driver.RegisterDriver("Chris");
+	trip.startTime = "10:15";
+	trip.stopTime = "10:45";
+	trip.milesDriven = 1.5;
+	EXPECT_EQ("Invalid trip! Average speed less than 5 mph \n", driver.AddTrip("Chris", trip));
+	trip.startTime = "10:15";
+	trip.stopTime = "10:45";
+	trip.milesDriven = 75.0;
+	EXPECT_EQ("Invalid trip! Average speed greater than 100 mph \n", driver.AddTrip("Chris", trip));
+}
+
+
+

@@ -22,8 +22,8 @@ class Driver {
 public:
 	bool ReadFile(string file);
 	string RegisterDriver(string driverName);
-	void AddTrip(string driverName, Trip_t trip);
-	void GenerateReport(string driverName);
+	string AddTrip(string driverName, Trip_t trip);
+	string GenerateReport(string driverName);
 	int ConvertTimeToMinutes(string time);
 	double CalculateAverageSpeed(int time, double miles);
 
