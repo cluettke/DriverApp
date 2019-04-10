@@ -9,8 +9,9 @@ To start out I will be creating a Driver class which will resemble the following
 Trip_t structure:
 * string startTime;
 * string stopTime;
+* int tripLength;       // Minutes
 * double milesDriven;
-* double averageSpeed;
+* double averageSpeed;  // MPH
 
 Driver_t structure:
 * double totalTimeDriven;
@@ -24,13 +25,11 @@ The following functions will be created to allow for easy use of the Driver clas
 
 # Public Functions
 * bool ReadFile(string file);
-* bool RegisterDriver(string driverName);
-* void AddTrip(string driverName, Trip_t trip);
-* void GenerateDriverReport(string driverName);
-
-# Private Functions
-* double CalculateAverageSpeed(Trip_t trip);
+* string RegisterDriver(string driverName);
+* string AddTrip(string driverName, Trip_t trip);
+* string GenerateDriverReport(string driverName);
 * double ConvertTimeToMinutes(string time);
+* double CalculateAverageSpeed(Trip_t trip);
 
 # Testing Method
 In addition to testing overall functionality using a sample input.txt file I will be writing unit tests for the individual functions using the Googletest framework. 
