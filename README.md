@@ -2,7 +2,9 @@
 
 I will be writing the DriverApp using C++ and utilizing GoogleTest framework to write tests on my DriverApp.
 
-To start out I will be creating a Driver class which will resemble the following 
+I made all functions public to allow for ease of testing using the GoogleTest framework. I chose a map for storing the drivers and their trips as it can easily be searched through to find the driver of interest and it has the benefit of alphabetizing the drivers. Several of the functions return a string and I went with this to allow for additional information to be passed back to the tester. This could very easily be changed to an int or return an error code enum defined in the Driver class. I created functions for each task so that they would be clear concise and easily testable. 
+
+I will be creating a Driver class which will resemble the following 
 
 # Class Driver
 
