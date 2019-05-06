@@ -71,7 +71,7 @@ string Driver::AddTrip(string driverName, Trip_t trip) {
 		tripLength = CalculateTripLength(trip.startTime, trip.stopTime);
 		averageSpeed = CalculateAverageSpeed(tripLength, trip.milesDriven);
 
-		if (averageSpeed > 5 && averageSpeed < 100) {
+		if (IsTripValid(tripLength, averageSpeed)) {
 			iter->second.totalMilesDriven += trip.milesDriven;
 			iter->second.totalTimeDriven += tripLength;
 			return "Trip was successfully added to database \n";
@@ -128,4 +128,14 @@ double Driver::CalculateAverageSpeed(int time, double miles) {
 
 int Driver::CalculateTripLength(string startTime, string stopTime) {
 	return ConvertTimeToMinutes(stopTime) - ConvertTimeToMinutes(startTime);
+}
+
+bool Driver::IsTripValid(int tripLength, double averageSpeed) {
+
+	if (averageSpeed > 5 && averageSpeed < 100) {
+		return true;
+	}
+	else {
+		return false;
+	}
 }

@@ -36,6 +36,7 @@ private:
 	} Driver_t;
 
 	int CalculateTripLength(string startTime, string stopTime);
+	bool IsTripValid(int tripLength, double averageSpeed);
 
 	map<string, Driver_t> driverDatabase;
 };
