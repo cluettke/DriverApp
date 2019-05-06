@@ -35,5 +35,7 @@ private:
 		vector<Trip_t> trips;
 	} Driver_t;
 
+	int CalculateTripLength(string startTime, string stopTime);
+
 	map<string, Driver_t> driverDatabase;
 };

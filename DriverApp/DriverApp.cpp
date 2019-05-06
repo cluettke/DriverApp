@@ -68,7 +68,7 @@ string Driver::AddTrip(string driverName, Trip_t trip) {
 	auto iter = driverDatabase.find(driverName);
 	if (iter != driverDatabase.end()) {
 		// Check if trip was valid (average speed > 5 mph and < 100 mph
-		tripLength = ConvertTimeToMinutes(trip.stopTime) - ConvertTimeToMinutes(trip.startTime);
+		tripLength = CalculateTripLength(trip.startTime, trip.stopTime);
 		averageSpeed = CalculateAverageSpeed(tripLength, trip.milesDriven);
 
 		if (averageSpeed > 5 && averageSpeed < 100) {
@@ -124,4 +124,8 @@ double Driver::CalculateAverageSpeed(int time, double miles) {
 	double averageSpeedMph = 0.0;
 	averageSpeedMph = (miles / time) * 60.0;
 	return averageSpeedMph;
+}
+
+int Driver::CalculateTripLength(string startTime, string stopTime) {
+	return ConvertTimeToMinutes(stopTime) - ConvertTimeToMinutes(startTime);
 }
