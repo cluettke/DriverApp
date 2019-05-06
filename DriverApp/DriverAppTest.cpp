@@ -77,5 +77,16 @@ TEST(DriverAppTest, WhenGenerateReportIsCalledTheOutputIsCorrect) {
 	EXPECT_EQ("Chris: 30 miles @ 60 mph \nDon: 0 miles \n", driver.GenerateReport());
 }
 
+TEST(DriverAppTest, WhenTripWithStopTimeBeforeStartTimeItGetsHandledCorrectly) {
+	Driver driver;
+	Trip_t trip;
+	driver.RegisterDriver("Fred");
+	trip.startTime = "4:30";
+	trip.stopTime = "2:00";
+	trip.milesDriven = 120;
+	driver.AddTrip("Fred", trip);
+	EXPECT_EQ("Invalid trip! Average speed less than 5 mph \n", driver.AddTrip("Fred", trip));
+}
+
 
 
