@@ -84,9 +84,23 @@ TEST(DriverAppTest, WhenTripWithStopTimeBeforeStartTimeItGetsHandledCorrectly) {
 	trip.startTime = "4:30";
 	trip.stopTime = "2:00";
 	trip.milesDriven = 120;
-	driver.AddTrip("Fred", trip);
 	EXPECT_EQ("Invalid trip! Average speed less than 5 mph \n", driver.AddTrip("Fred", trip));
 }
 
+TEST(DriverAppTest, WhenStartAndStopTimesAreTheSameItIsHandledCorrectly) {
+	Driver driver;
+	Trip_t trip;
+	driver.RegisterDriver("Chris");
+	trip.startTime = "12:00";
+	trip.stopTime = "12.00";
+	trip.startTime = 50;
+	EXPECT_EQ("Invalid trip! Average speed less than 5 mph \n", driver.AddTrip("Chris", trip));
+}
+
+TEST(DriverAppTest, InvalidFileIsHandledGracefully) {
+	Driver driver;
+	EXPECT_EQ(false, driver.ReadFile("badInput.txt"));
+
+}
 
 
