@@ -14,15 +14,27 @@ end
 
 # Boxing Scheduler Class Tests
 RSpec.describe BoxScheduler do
-  it 'creates a BoxScheduler class' do
-    scheduler = BoxScheduler.new
-    expect(scheduler).to be_kind_of(BoxScheduler)
+  before :all do
+    @scheduler = BoxScheduler.new
   end
+
+  it 'creates a BoxScheduler class' do
+    expect(@scheduler).to be_kind_of(BoxScheduler)
+  end
+
+  it 'scheduler has load family preferences function' do
+    expect(@scheduler).to respond_to(:load_family_preferences)
+  end
+
 end
 
+# Family Class Tests
 RSpec.describe Family do
+  before :all do
+    @starWarsFamily = Family.new
+  end
+
   it 'creates a Family class' do
-    starWarsFamily = Family.new
-    expect(starWarsFamily).to be_kind_of(Family)
+    expect(@starWarsFamily).to be_kind_of(Family)
   end
 end
