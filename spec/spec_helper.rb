@@ -1,3 +1,5 @@
+require 'date'
+
 require "bundler/setup"
 require "boxing/kata/boxing_kata"
 require "boxing/kata/box_scheduler"
@@ -26,6 +28,21 @@ RSpec.describe BoxScheduler do
     expect(@scheduler).to respond_to(:load_family_preferences)
   end
 
+  it 'scheduler\'s compute refill dates returns dates every 90 days after effective date' do
+    refill_dates = Array.new
+    effective_date = Date.new(2019, 1, 1)
+    refill_dates = @scheduler.compute_refill_dates( effective_date )
+    expect(refill_dates).to contain_exactly(Date.new(2019, 4, 1), Date.new(2019, 6, 30),
+                                            Date.new(2019, 9, 28), Date.new(2019, 12, 27))
+  end
+
+  it 'scheduler\'s compute refill dates returns dates every 90 days after 2019-08-01 for 1 year' do
+    refill_dates = Array.new
+    effective_date = Date.new(2019, 8, 1)
+    refill_dates = @scheduler.compute_refill_dates( effective_date )
+    expect(refill_dates).to contain_exactly(Date.new(2019, 10, 30), Date.new(2020, 1, 28),
+                                            Date.new(2020, 4, 27), Date.new(2020, 7, 26))
+  end
 end
 
 # Family Class Tests
