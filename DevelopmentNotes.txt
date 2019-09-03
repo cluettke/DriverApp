@@ -45,3 +45,4 @@ REFILL BOX
 Schedule: 2018-04-01, 2018-06-30, 2018-09-28, 2018-12-27
 Mail class: first
 ```
+The initial commit to GitHub with base files provided and this development notes that include my thought process throughout the development process. I have reworded the ReadMe provided and summarized all the requirements in this post. I will begin by getting the program to read in an input file correctly and outputting the basic information about the family. 
