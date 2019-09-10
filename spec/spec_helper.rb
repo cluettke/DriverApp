@@ -29,6 +29,24 @@ RSpec.describe BoxScheduler do
     expect(@scheduler.ship_starter_box(@starWarsFamily)).to eq("NO STARTER BOXES GENERATED\n")
   end
 
+  it 'Ship starter box responds with correct starter boxes based on family preferences' do
+    @preferences = 'spec/fixtures/family_preferences.csv'
+    @starWarsFamily.load_family_preferences(@preferences)
+
+    expect(@scheduler.ship_starter_box(@starWarsFamily)).to eq(
+        "STARTER BOX\n" +
+        "2 blue brushes\n" +
+        "2 blue replacement heads\n" +
+        "\n" +
+        "STARTER BOX\n" +
+        "2 green brushes\n" +
+        "2 green replacement heads\n" +
+        "\n" +
+        "STARTER BOX\n" +
+        "1 pink brush\n" +
+        "1 pink replacement head\n")
+  end
+
   it 'scheduler\'s compute refill dates returns dates every 90 days after effective date' do
     refill_dates = Array.new
     effective_date = Date.new(2019, 1, 1)

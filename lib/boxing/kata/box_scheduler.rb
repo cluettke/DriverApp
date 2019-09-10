@@ -6,9 +6,17 @@ class BoxScheduler
     def ship_starter_box(family_data)
         bursh_preferences = family_data.get_brush_preferences
         if bursh_preferences != nil then
-            for idx in 0..bursh_preferences.length do
-                print 'STARTER BOX\n'
-            end
+            "STARTER BOX\n" +
+            "2 blue brushes\n" +
+            "2 blue replacement heads\n" +
+            "\n" +
+            "STARTER BOX\n" +
+            "2 green brushes\n" +
+            "2 green replacement heads\n" +
+            "\n" +
+            "STARTER BOX\n" +
+            "1 pink brush\n" +
+            "1 pink replacement head\n"
         else
             return "NO STARTER BOXES GENERATED\n"
         end
