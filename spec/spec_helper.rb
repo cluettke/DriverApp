@@ -54,4 +54,17 @@ RSpec.describe Family do
   it 'creates a Family class' do
     expect(@starWarsFamily).to be_kind_of(Family)
   end
+
+  it 'set family preferences takes a csv file and reads user preferences' do
+    preferences = 'spec/fixtures/family_preferences.csv'
+    family_data = @starWarsFamily.load_family_preferences(preferences)
+    family_data = @starWarsFamily.get_family_data()
+    expect(family_data).to contain_exactly( ['2', 'Anakin', 'blue', nil, '2018-01-01'],
+                                            ['3', 'Padme', 'pink', '2', nil],
+                                            ['4', 'Luke', 'blue', '2', nil],
+                                            ['5', 'Leia', 'green', '2', nil],
+                                            ['6', 'Ben', 'green', '2', nil])
+  end
+
+ 
 end
