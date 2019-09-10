@@ -18,10 +18,15 @@ end
 RSpec.describe BoxScheduler do
   before :all do
     @scheduler = BoxScheduler.new
+    @starWarsFamily = Family.new
   end
 
   it 'creates a BoxScheduler class' do
     expect(@scheduler).to be_kind_of(BoxScheduler)
+  end
+
+  it 'Ship starter box responds correctly when not provided preferences' do
+    expect(@scheduler.ship_starter_box(@starWarsFamily)).to eq("NO STARTER BOXES GENERATED\n")
   end
 
   it 'scheduler\'s compute refill dates returns dates every 90 days after effective date' do

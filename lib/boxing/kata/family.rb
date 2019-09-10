@@ -35,7 +35,11 @@ class Family
 
 
     def get_brush_preferences
-        return @brush_preferences.inject(Hash.new(0)) { |total, e| total[e] += 1; total}
+        if @brush_preferences != nil then
+            return @brush_preferences.inject(Hash.new(0)) { |total, e| total[e] += 1; total}
+        else 
+            return nil
+        end
     end
 
     def get_primary_insured_id
