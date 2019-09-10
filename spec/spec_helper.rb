@@ -24,10 +24,6 @@ RSpec.describe BoxScheduler do
     expect(@scheduler).to be_kind_of(BoxScheduler)
   end
 
-  it 'scheduler has load family preferences function' do
-    expect(@scheduler).to respond_to(:load_family_preferences)
-  end
-
   it 'scheduler\'s compute refill dates returns dates every 90 days after effective date' do
     refill_dates = Array.new
     effective_date = Date.new(2019, 1, 1)

@@ -2,9 +2,6 @@ require 'boxing/kata/family'
 
 #define class Box Scheduler
 class BoxScheduler
-    
-    def load_family_preferences(preferences)
-    end
 
     def compute_refill_dates(effective_date)
         refill_dates = Array.new(4, Date.new)
