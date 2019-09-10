@@ -55,7 +55,7 @@ RSpec.describe Family do
     expect(@starWarsFamily).to be_kind_of(Family)
   end
 
-  it 'set family preferences takes a csv file and reads user preferences' do
+  it 'load_family_preferences takes a csv file and reads user preferences' do
     preferences = 'spec/fixtures/family_preferences.csv'
     family_data = @starWarsFamily.load_family_preferences(preferences)
     family_data = @starWarsFamily.get_family_data()
