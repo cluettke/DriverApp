@@ -2,12 +2,12 @@
 require 'csv'
 
 class Family
-    @brush_preferences = Array.new
     @primary_insured_id = nil
     @contract_effective_date = nil
 
     def load_family_preferences (preferences) 
         str = CSV.read(preferences, headers: true)
+        @brush_preferences = Array.new
         @family_data = Array.new
         CSV.foreach(preferences, headers:true) do |row|  
             family_member = Array.new(5)
@@ -15,6 +15,8 @@ class Family
             family_member[0] = row[0]
             family_member[1] = row[1]
             family_member[2] = row[2]
+            brush_color = row[2]
+            @brush_preferences.push(brush_color)
             family_member[3] = row[3]
             family_member[4] = row[4]
 
@@ -25,7 +27,7 @@ class Family
             if @contract_effective_date == nil && row[4] != nil then
                 @contract_effective_date = row[4]
             end
-            
+
             @family_data.push(family_member)
         end
     end
@@ -33,7 +35,7 @@ class Family
 
 
     def get_brush_preferences
-        return @brush_preferences
+        return @brush_preferences.inject(Hash.new(0)) { |total, e| total[e] += 1; total}
     end
 
     def get_primary_insured_id

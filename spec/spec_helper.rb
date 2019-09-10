@@ -50,6 +50,7 @@ RSpec.describe Family do
   before :all do
     @starWarsFamily = Family.new    
     @preferences = 'spec/fixtures/family_preferences.csv'
+    @starWarsFamily.load_family_preferences(@preferences)
   end
 
   it 'creates a Family class' do
@@ -57,9 +58,7 @@ RSpec.describe Family do
   end
 
   it 'load_family_preferences takes a csv file and reads user preferences' do
-    @starWarsFamily.load_family_preferences(@preferences)
-    family_data = @starWarsFamily.get_family_data()
-    expect(family_data).to contain_exactly( ['2', 'Anakin', 'blue', nil, '2018-01-01'],
+    expect(@starWarsFamily.get_family_data).to contain_exactly( ['2', 'Anakin', 'blue', nil, '2018-01-01'],
                                             ['3', 'Padme', 'pink', '2', nil],
                                             ['4', 'Luke', 'blue', '2', nil],
                                             ['5', 'Leia', 'green', '2', nil],
@@ -67,13 +66,15 @@ RSpec.describe Family do
   end
 
   it 'contract effective date is set correctly from the configuration file' do
-    @starWarsFamily.load_family_preferences(@preferences)
     expect(@starWarsFamily.get_contract_effective_date()).to eq('2018-01-01')
   end
 
   it 'primary insured id is set correctly from the configuration file' do
-    @starWarsFamily.load_family_preferences(@preferences)
     expect(@starWarsFamily.get_primary_insured_id()).to eq('2')
+  end
+
+  it 'get brush preferences returns the correct brush preferences' do
+    expect(@starWarsFamily.get_brush_preferences).to contain_exactly( ['blue', 2], ['green', 2], ['pink', 1])
   end
 
 end
