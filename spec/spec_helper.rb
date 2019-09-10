@@ -71,4 +71,9 @@ RSpec.describe Family do
     expect(@starWarsFamily.get_contract_effective_date()).to eq('2018-01-01')
   end
 
+  it 'primary insured id is set correctly from the configuration file' do
+    @starWarsFamily.load_family_preferences(@preferences)
+    expect(@starWarsFamily.get_primary_insured_id()).to eq('2')
+  end
+
 end

@@ -17,12 +17,20 @@ class Family
             family_member[2] = row[2]
             family_member[3] = row[3]
             family_member[4] = row[4]
+
+            if @primary_insured_id == nil && row[3] != nil then
+                @primary_insured_id = row[3]
+            end
+
             if @contract_effective_date == nil && row[4] != nil then
                 @contract_effective_date = row[4]
             end
+            
             @family_data.push(family_member)
         end
     end
+
+
 
     def get_brush_preferences
         return @brush_preferences
