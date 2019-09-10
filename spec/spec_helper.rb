@@ -48,7 +48,8 @@ end
 # Family Class Tests
 RSpec.describe Family do
   before :all do
-    @starWarsFamily = Family.new
+    @starWarsFamily = Family.new    
+    @preferences = 'spec/fixtures/family_preferences.csv'
   end
 
   it 'creates a Family class' do
@@ -56,8 +57,7 @@ RSpec.describe Family do
   end
 
   it 'load_family_preferences takes a csv file and reads user preferences' do
-    preferences = 'spec/fixtures/family_preferences.csv'
-    family_data = @starWarsFamily.load_family_preferences(preferences)
+    @starWarsFamily.load_family_preferences(@preferences)
     family_data = @starWarsFamily.get_family_data()
     expect(family_data).to contain_exactly( ['2', 'Anakin', 'blue', nil, '2018-01-01'],
                                             ['3', 'Padme', 'pink', '2', nil],
@@ -66,5 +66,9 @@ RSpec.describe Family do
                                             ['6', 'Ben', 'green', '2', nil])
   end
 
- 
+  it 'contract effective date is set correctly from the configuration file' do
+    @starWarsFamily.load_family_preferences(@preferences)
+    expect(@starWarsFamily.get_contract_effective_date()).to eq('2018-01-01')
+  end
+
 end
