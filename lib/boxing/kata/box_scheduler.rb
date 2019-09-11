@@ -41,6 +41,7 @@ class BoxScheduler
                 end
             end
             @has_starter_box_shipped = true
+            starter_box_str << "Schedule: " << family_data.get_contract_effective_date << "\n"
             return starter_box_str
         else
             return "NO STARTER BOXES GENERATED\n"

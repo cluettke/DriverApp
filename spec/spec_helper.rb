@@ -19,6 +19,7 @@ RSpec.describe BoxScheduler do
   before :all do
     @scheduler = BoxScheduler.new
     @starWarsFamily = Family.new
+    @smithFamily = Family.new
   end
 
   it 'creates a BoxScheduler class' do
@@ -44,14 +45,15 @@ RSpec.describe BoxScheduler do
         "1 green replacement head\n" <<
         "STARTER BOX\n" <<
         "1 green brush\n" <<
-        "1 green replacement head\n")
+        "1 green replacement head\n" <<
+        "Schedule: 2018-01-01\n")
   end
 
   it 'Ship starter box responds with correct starter boxes based on smith family preferences' do
     @preferences = 'spec/fixtures/smith_preferences.csv'
-    @starWarsFamily.load_family_preferences(@preferences)
+    @smithFamily.load_family_preferences(@preferences)
 
-    expect(@scheduler.ship_starter_box(@starWarsFamily)).to eq(
+    expect(@scheduler.ship_starter_box(@smithFamily)).to eq(
         "STARTER BOX\n" <<
         "2 red brushes\n" <<
         "2 red replacement heads\n" <<
@@ -59,7 +61,8 @@ RSpec.describe BoxScheduler do
         "1 yellow brush\n" <<
         "1 yellow replacement head\n" <<
         "1 purple brush\n" <<
-        "1 purple replacement head\n")
+        "1 purple replacement head\n" <<
+        "Schedule: 2020-01-01\n")
   end
 
   it 'Ship refill box responds with correct refill boxes based on star wars family preferences' do
@@ -79,7 +82,23 @@ RSpec.describe BoxScheduler do
   it 'Ship refill box reports error if starter box has not been shipped yet' do
     @preferences = 'spec/fixtures/smith_preferences.csv'
     refillScheduler = BoxScheduler.new
-    expect(refillScheduler.ship_refill_boxes(@starWarsFamily)).to eq("NO STARTER BOXES GENERATED\n" )
+    expect(refillScheduler.ship_refill_boxes(@smithFamily)).to eq("NO STARTER BOXES GENERATED\n" )
+  end
+
+  it 'ship_starter_box will contain the correct ship date (contract effective date)' do
+    @preferences = 'spec/fixtures/smith_preferences.csv'
+    @smithFamily.load_family_preferences(@preferences)
+
+    expect(@scheduler.ship_starter_box(@smithFamily)).to eq(
+        "STARTER BOX\n" <<
+        "2 red brushes\n" <<
+        "2 red replacement heads\n" <<
+        "STARTER BOX\n" <<
+        "1 yellow brush\n" <<
+        "1 yellow replacement head\n" <<
+        "1 purple brush\n" <<
+        "1 purple replacement head\n" <<
+        "Schedule: 2020-01-01\n")
   end
 
   it 'scheduler\'s compute refill dates returns dates every 90 days after effective date' do
