@@ -2,7 +2,8 @@ require 'boxing/kata/family'
 
 #define class Box Scheduler
 class BoxScheduler    
-    
+    @has_starter_box_shipped = false
+
     def ship_starter_box(family_data)
         bursh_preferences = family_data.get_brush_preferences
         brushes_in_box = 0
@@ -39,6 +40,7 @@ class BoxScheduler
                     end
                 end
             end
+            @has_starter_box_shipped = true
             return starter_box_str
         else
             return "NO STARTER BOXES GENERATED\n"
@@ -46,6 +48,9 @@ class BoxScheduler
     end
 
     def ship_refill_boxes(family_data)
+        if (!@has_starter_box_shipped) then
+           return "NO STARTER BOXES GENERATED\n" 
+        end
         bursh_preferences = family_data.get_brush_preferences
         items_in_box = 0
         if bursh_preferences != nil then
@@ -84,7 +89,7 @@ class BoxScheduler
             end
             return refill_box_str
         else
-            return "PLEASE GENERATE STARTER BOXES FIRST\n"
+            return "PLEASE LOAD USER PREFERENCES\n"
         end
     end
 

@@ -65,6 +65,7 @@ RSpec.describe BoxScheduler do
   it 'Ship refill box responds with correct refill boxes based on star wars family preferences' do
     @preferences = 'spec/fixtures/family_preferences.csv'
     @starWarsFamily.load_family_preferences(@preferences)
+    @scheduler.ship_starter_box(@starWarsFamily)
 
     expect(@scheduler.ship_refill_boxes(@starWarsFamily)).to eq(
         "REFILL BOX\n" <<
@@ -73,6 +74,12 @@ RSpec.describe BoxScheduler do
         "1 green replacement head\n" <<
         "REFILL BOX\n" <<
         "1 green replacement head\n")
+  end
+
+  it 'Ship refill box reports error if starter box has not been shipped yet' do
+    @preferences = 'spec/fixtures/smith_preferences.csv'
+    refillScheduler = BoxScheduler.new
+    expect(refillScheduler.ship_refill_boxes(@starWarsFamily)).to eq("NO STARTER BOXES GENERATED\n" )
   end
 
   it 'scheduler\'s compute refill dates returns dates every 90 days after effective date' do
