@@ -120,4 +120,20 @@ class BoxScheduler
         refill_dates[3] = refill_dates[2] + refill_interval
         return refill_dates
     end
+
+    def calculate_shipping_method(num_brushes, num_brush_heads, num_paste_kits) 
+        brush_wgt = 9
+        brush_head_wgt = 1
+        paste_kit_wgt = 7.6
+        first_class_wgt_limit = 16
+        shipping_weight = 0.0
+        shipping_weight = num_brushes * brush_wgt + num_brush_heads * brush_head_wgt +
+                          num_paste_kits * paste_kit_wgt
+        
+        if shipping_weight < first_class_wgt_limit then
+            return "first"
+        else
+            return "priority"
+        end
+    end
 end
