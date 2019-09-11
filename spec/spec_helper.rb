@@ -29,22 +29,37 @@ RSpec.describe BoxScheduler do
     expect(@scheduler.ship_starter_box(@starWarsFamily)).to eq("NO STARTER BOXES GENERATED\n")
   end
 
-  it 'Ship starter box responds with correct starter boxes based on family preferences' do
+  it 'Ship starter box responds with correct starter boxes based on star wars family preferences' do
     @preferences = 'spec/fixtures/family_preferences.csv'
     @starWarsFamily.load_family_preferences(@preferences)
 
     expect(@scheduler.ship_starter_box(@starWarsFamily)).to eq(
-        "STARTER BOX\n" +
-        "2 blue brushes\n" +
-        "2 blue replacement heads\n" +
-        "\n" +
-        "STARTER BOX\n" +
-        "2 green brushes\n" +
-        "2 green replacement heads\n" +
-        "\n" +
-        "STARTER BOX\n" +
-        "1 pink brush\n" +
-        "1 pink replacement head\n")
+        "STARTER BOX\n" <<
+        "2 blue brushes\n" <<
+        "2 blue replacement heads\n" <<
+        "STARTER BOX\n" <<
+        "1 pink brush\n" <<
+        "1 pink replacement head\n" <<
+        "1 green brush\n" <<
+        "1 green replacement head\n" <<
+        "STARTER BOX\n" <<
+        "1 green brush\n" <<
+        "1 green replacement head\n")
+  end
+
+  it 'Ship starter box responds with correct starter boxes based on smith family preferences' do
+    @preferences = 'spec/fixtures/smith_preferences.csv'
+    @starWarsFamily.load_family_preferences(@preferences)
+
+    expect(@scheduler.ship_starter_box(@starWarsFamily)).to eq(
+        "STARTER BOX\n" <<
+        "2 red brushes\n" <<
+        "2 red replacement heads\n" <<
+        "STARTER BOX\n" <<
+        "1 yellow brush\n" <<
+        "1 yellow replacement head\n" <<
+        "1 purple brush\n" <<
+        "1 purple replacement head\n")
   end
 
   it 'scheduler\'s compute refill dates returns dates every 90 days after effective date' do

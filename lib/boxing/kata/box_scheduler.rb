@@ -5,18 +5,41 @@ class BoxScheduler
     
     def ship_starter_box(family_data)
         bursh_preferences = family_data.get_brush_preferences
+        brushes_in_box = 0
         if bursh_preferences != nil then
-            "STARTER BOX\n" +
-            "2 blue brushes\n" +
-            "2 blue replacement heads\n" +
-            "\n" +
-            "STARTER BOX\n" +
-            "2 green brushes\n" +
-            "2 green replacement heads\n" +
-            "\n" +
-            "STARTER BOX\n" +
-            "1 pink brush\n" +
-            "1 pink replacement head\n"
+            starter_box_str = ""
+            bursh_preferences.each do |preference|
+                while preference[1] > 0 do
+
+                    if brushes_in_box == 0 then
+                        starter_box_str << "STARTER BOX\n"
+
+                        if preference[1] >= 2 then
+                            starter_box_str <<
+                            "2 " << preference[0] << " brushes\n" <<
+                            "2 " << preference[0] << " replacement heads\n"
+                            preference[1] -= 2
+                        else
+                            starter_box_str <<
+                            "1 " << preference[0] << " brush\n" <<
+                            "1 " << preference[0] << " replacement head\n"
+                            preference[1] -= 1
+                            brushes_in_box += 1
+                        end
+                    else #Already one brush in box
+                        starter_box_str <<
+                        "1 " << preference[0] << " brush\n" <<
+                        "1 " << preference[0] << " replacement head\n"
+                        preference[1] -= 1
+                        brushes_in_box += 1
+                    end
+                    
+                    if brushes_in_box == 2 then
+                        brushes_in_box = 0
+                    end
+                end
+            end
+            return starter_box_str
         else
             return "NO STARTER BOXES GENERATED\n"
         end
