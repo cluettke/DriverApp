@@ -38,11 +38,13 @@ RSpec.describe BoxScheduler do
         "STARTER BOX\n" <<
         "2 blue brushes\n" <<
         "2 blue replacement heads\n" <<
+        "Schedule: 2018-01-01\n" <<
         "STARTER BOX\n" <<
         "1 pink brush\n" <<
         "1 pink replacement head\n" <<
         "1 green brush\n" <<
         "1 green replacement head\n" <<
+        "Schedule: 2018-01-01\n" <<
         "STARTER BOX\n" <<
         "1 green brush\n" <<
         "1 green replacement head\n" <<
@@ -57,6 +59,7 @@ RSpec.describe BoxScheduler do
         "STARTER BOX\n" <<
         "2 red brushes\n" <<
         "2 red replacement heads\n" <<
+        "Schedule: 2020-01-01\n" <<
         "STARTER BOX\n" <<
         "1 yellow brush\n" <<
         "1 yellow replacement head\n" <<
@@ -75,8 +78,10 @@ RSpec.describe BoxScheduler do
         "2 blue replacement heads\n" <<
         "1 pink replacement head\n" <<
         "1 green replacement head\n" <<
+        "Schedule: 2018-04-01, 2018-06-30, 2018-09-28, 2018-12-27\n" <<
         "REFILL BOX\n" <<
-        "1 green replacement head\n")
+        "1 green replacement head\n" <<
+        "Schedule: 2018-04-01, 2018-06-30, 2018-09-28, 2018-12-27\n")
   end
 
   it 'Ship refill box reports error if starter box has not been shipped yet' do
@@ -93,6 +98,7 @@ RSpec.describe BoxScheduler do
         "STARTER BOX\n" <<
         "2 red brushes\n" <<
         "2 red replacement heads\n" <<
+        "Schedule: 2020-01-01\n" <<
         "STARTER BOX\n" <<
         "1 yellow brush\n" <<
         "1 yellow replacement head\n" <<
@@ -115,6 +121,22 @@ RSpec.describe BoxScheduler do
     refill_dates = @scheduler.compute_refill_dates( effective_date )
     expect(refill_dates).to contain_exactly(Date.new(2019, 10, 30), Date.new(2020, 1, 28),
                                             Date.new(2020, 4, 27), Date.new(2020, 7, 26))
+  end
+
+  it 'ship_refill_boxes lists the correct schedule for refill shipments' do
+    @preferences = 'spec/fixtures/family_preferences.csv'
+    @starWarsFamily.load_family_preferences(@preferences)
+    @scheduler.ship_starter_box(@starWarsFamily)
+
+    expect(@scheduler.ship_refill_boxes(@starWarsFamily)).to eq(
+        "REFILL BOX\n" <<
+        "2 blue replacement heads\n" <<
+        "1 pink replacement head\n" <<
+        "1 green replacement head\n" <<
+        "Schedule: 2018-04-01, 2018-06-30, 2018-09-28, 2018-12-27\n" <<
+        "REFILL BOX\n" <<
+        "1 green replacement head\n" <<
+        "Schedule: 2018-04-01, 2018-06-30, 2018-09-28, 2018-12-27\n")
   end
 end
 

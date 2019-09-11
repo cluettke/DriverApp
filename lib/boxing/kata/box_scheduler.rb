@@ -20,6 +20,7 @@ class BoxScheduler
                             "2 " << preference[0] << " brushes\n" <<
                             "2 " << preference[0] << " replacement heads\n"
                             preference[1] -= 2
+                            brushes_in_box = 2
                         else
                             starter_box_str <<
                             "1 " << preference[0] << " brush\n" <<
@@ -36,12 +37,15 @@ class BoxScheduler
                     end
                     
                     if brushes_in_box == 2 then
+                        starter_box_str << "Schedule: " << family_data.get_contract_effective_date() << "\n"
                         brushes_in_box = 0
                     end
                 end
             end
+            if brushes_in_box == 1 then
+                starter_box_str << "Schedule: " << family_data.get_contract_effective_date() << "\n"
+            end
             @has_starter_box_shipped = true
-            starter_box_str << "Schedule: " << family_data.get_contract_effective_date << "\n"
             return starter_box_str
         else
             return "NO STARTER BOXES GENERATED\n"
@@ -56,6 +60,8 @@ class BoxScheduler
         items_in_box = 0
         if bursh_preferences != nil then
             refill_box_str = ""
+            effective_date = Date.parse(family_data.get_contract_effective_date())
+            refill_dates = compute_refill_dates(effective_date)
             bursh_preferences.each do |preference|
                 while preference[1] > 0 do
 
@@ -84,9 +90,19 @@ class BoxScheduler
                     end
                     
                     if items_in_box == 4 then
+                        refill_box_str << "Schedule: " << refill_dates[0].to_s << ", " << 
+                                                          refill_dates[1].to_s << ", " <<
+                                                          refill_dates[2].to_s << ", " <<
+                                                          refill_dates[3].to_s << "\n"
                         items_in_box = 0
                     end
                 end
+            end
+            if items_in_box != 0 then
+                refill_box_str << "Schedule: " << refill_dates[0].to_s << ", " << 
+                refill_dates[1].to_s << ", " <<
+                refill_dates[2].to_s << ", " <<
+                refill_dates[3].to_s << "\n"
             end
             return refill_box_str
         else
