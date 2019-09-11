@@ -18,7 +18,8 @@ class BoxScheduler
                         if preference[1] >= 2 then
                             starter_box_str <<
                             "2 " << preference[0] << " brushes\n" <<
-                            "2 " << preference[0] << " replacement heads\n"
+                            "2 " << preference[0] << " replacement heads\n" <<
+                            "2 paste kits\n"
                             preference[1] -= 2
                             brushes_in_box = 2
                         else
@@ -31,19 +32,23 @@ class BoxScheduler
                     else #Already one brush in box
                         starter_box_str <<
                         "1 " << preference[0] << " brush\n" <<
-                        "1 " << preference[0] << " replacement head\n"
+                        "1 " << preference[0] << " replacement head\n" <<
+                        "2 paste kits\n"
                         preference[1] -= 1
                         brushes_in_box += 1
                     end
                     
                     if brushes_in_box == 2 then
                         starter_box_str << "Schedule: " << family_data.get_contract_effective_date() << "\n"
+                        starter_box_str << "Mail Class: " << calculate_shipping_method(2, 2, 2) << "\n"
                         brushes_in_box = 0
                     end
                 end
             end
             if brushes_in_box == 1 then
+                starter_box_str << "1 paste kit\n"
                 starter_box_str << "Schedule: " << family_data.get_contract_effective_date() << "\n"
+                starter_box_str << "Mail Class: " << calculate_shipping_method(1, 1, 1) << "\n"
             end
             @has_starter_box_shipped = true
             return starter_box_str
@@ -90,19 +95,23 @@ class BoxScheduler
                     end
                     
                     if items_in_box == 4 then
+                        refill_box_str << "4 paste kits\n"
                         refill_box_str << "Schedule: " << refill_dates[0].to_s << ", " << 
                                                           refill_dates[1].to_s << ", " <<
                                                           refill_dates[2].to_s << ", " <<
                                                           refill_dates[3].to_s << "\n"
+                        refill_box_str << "Mail Class: " << calculate_shipping_method(0, 4, 4) << "\n"
                         items_in_box = 0
                     end
                 end
             end
             if items_in_box != 0 then
+                refill_box_str << items_in_box.to_s << " paste kit\n"
                 refill_box_str << "Schedule: " << refill_dates[0].to_s << ", " << 
                 refill_dates[1].to_s << ", " <<
                 refill_dates[2].to_s << ", " <<
                 refill_dates[3].to_s << "\n"
+                refill_box_str << "Mail Class: " << calculate_shipping_method(0, items_in_box, items_in_box) << "\n"
             end
             return refill_box_str
         else

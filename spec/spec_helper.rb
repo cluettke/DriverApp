@@ -38,17 +38,23 @@ RSpec.describe BoxScheduler do
         "STARTER BOX\n" <<
         "2 blue brushes\n" <<
         "2 blue replacement heads\n" <<
+        "2 paste kits\n" <<
         "Schedule: 2018-01-01\n" <<
+        "Mail Class: priority\n" <<
         "STARTER BOX\n" <<
         "1 pink brush\n" <<
         "1 pink replacement head\n" <<
         "1 green brush\n" <<
         "1 green replacement head\n" <<
+        "2 paste kits\n" <<
         "Schedule: 2018-01-01\n" <<
+        "Mail Class: priority\n" <<
         "STARTER BOX\n" <<
         "1 green brush\n" <<
         "1 green replacement head\n" <<
-        "Schedule: 2018-01-01\n")
+        "1 paste kit\n" <<
+        "Schedule: 2018-01-01\n" <<
+        "Mail Class: priority\n")
   end
 
   it 'Ship starter box responds with correct starter boxes based on smith family preferences' do
@@ -59,13 +65,17 @@ RSpec.describe BoxScheduler do
         "STARTER BOX\n" <<
         "2 red brushes\n" <<
         "2 red replacement heads\n" <<
+        "2 paste kits\n" <<
         "Schedule: 2020-01-01\n" <<
+        "Mail Class: priority\n" <<
         "STARTER BOX\n" <<
         "1 yellow brush\n" <<
         "1 yellow replacement head\n" <<
         "1 purple brush\n" <<
         "1 purple replacement head\n" <<
-        "Schedule: 2020-01-01\n")
+        "2 paste kits\n" <<
+        "Schedule: 2020-01-01\n" <<
+        "Mail Class: priority\n")
   end
 
   it 'Ship refill box responds with correct refill boxes based on star wars family preferences' do
@@ -78,10 +88,14 @@ RSpec.describe BoxScheduler do
         "2 blue replacement heads\n" <<
         "1 pink replacement head\n" <<
         "1 green replacement head\n" <<
+        "4 paste kits\n" <<
         "Schedule: 2018-04-01, 2018-06-30, 2018-09-28, 2018-12-27\n" <<
+        "Mail Class: priority\n" <<
         "REFILL BOX\n" <<
         "1 green replacement head\n" <<
-        "Schedule: 2018-04-01, 2018-06-30, 2018-09-28, 2018-12-27\n")
+        "1 paste kit\n" <<
+        "Schedule: 2018-04-01, 2018-06-30, 2018-09-28, 2018-12-27\n" <<
+        "Mail Class: first\n")
   end
 
   it 'Ship refill box reports error if starter box has not been shipped yet' do
@@ -98,13 +112,17 @@ RSpec.describe BoxScheduler do
         "STARTER BOX\n" <<
         "2 red brushes\n" <<
         "2 red replacement heads\n" <<
+        "2 paste kits\n" <<
         "Schedule: 2020-01-01\n" <<
+        "Mail Class: priority\n" <<
         "STARTER BOX\n" <<
         "1 yellow brush\n" <<
         "1 yellow replacement head\n" <<
         "1 purple brush\n" <<
         "1 purple replacement head\n" <<
-        "Schedule: 2020-01-01\n")
+        "2 paste kits\n" <<
+        "Schedule: 2020-01-01\n" <<
+        "Mail Class: priority\n")
   end
 
   it 'scheduler\'s compute refill dates returns dates every 90 days after effective date' do
@@ -133,10 +151,14 @@ RSpec.describe BoxScheduler do
         "2 blue replacement heads\n" <<
         "1 pink replacement head\n" <<
         "1 green replacement head\n" <<
+        "4 paste kits\n" <<
         "Schedule: 2018-04-01, 2018-06-30, 2018-09-28, 2018-12-27\n" <<
+        "Mail Class: priority\n" <<
         "REFILL BOX\n" <<
         "1 green replacement head\n" <<
-        "Schedule: 2018-04-01, 2018-06-30, 2018-09-28, 2018-12-27\n")
+        "1 paste kit\n" <<
+        "Schedule: 2018-04-01, 2018-06-30, 2018-09-28, 2018-12-27\n" <<
+        "Mail Class: first\n")
   end
 
   it 'box with two brushes will be shipped priority mail' do
