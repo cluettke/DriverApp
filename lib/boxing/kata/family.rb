@@ -30,6 +30,7 @@ class Family
 
             @family_data.push(family_member)
         end
+        return get_brush_preferences()
     end
 
 

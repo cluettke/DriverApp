@@ -119,6 +119,10 @@ RSpec.describe Family do
                                             ['6', 'Ben', 'green', '2', nil])
   end
 
+  it 'load_family_preferences returns count of brush color perferences' do
+    expect(@starWarsFamily.load_family_preferences(@preferences)).to contain_exactly( ['blue', 2], ['green', 2], ['pink', 1])
+  end
+
   it 'contract effective date is set correctly from the configuration file' do
     expect(@starWarsFamily.get_contract_effective_date()).to eq('2018-01-01')
   end
