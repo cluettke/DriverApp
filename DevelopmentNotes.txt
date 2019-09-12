@@ -2,7 +2,7 @@
 Once the file has been read in the family's brush preferences will need to be printed out. 
 Will need to store the following at this point. 
 	- Contract effective date (date starter box is shipped).
-	- Refill shipment dats (every 90 days after effective date, valid for 1 year. 
+	- Refill shipment dates (every 90 days after effective date, valid for 1 year). 
 
 (2) After the input file has been read then the functionality to create the starter boxes and
 the content they will contain will need to be created. Will need a test to check that a family
@@ -45,6 +45,14 @@ REFILL BOX
 Schedule: 2018-04-01, 2018-06-30, 2018-09-28, 2018-12-27
 Mail class: first
 ```
-The initial commit to GitHub with base files provided and this development notes that include my thought process throughout the
-development process. I have reworded the ReadMe provided and summarized all the requirements in this post. I will begin by 
-getting the program to read in an input file correctly and outputting the basic information about the family. 
+
+I decided to create a Family class which holds a family's details (brush preferences, contract effective date etc)
+I also created a BoxScheduler class which handles the generation of the starter and refill boxes along with the 
+scheduling of the shipments. The ultimate goal being that a family object could be provided to the boxScheduler which
+would access the family's details as necessary to generate all boxes to be shipped. 
+
+There is still some duplicate code and both ship_starter_box and ship_refill_boxes and both functions could be 
+refactored further. It may be better to create some standard Starter_box_output and refill_box_output that is
+more robust than just adding the content to a string but for this excercise I left it as just a string to keep
+things simple. 
+
