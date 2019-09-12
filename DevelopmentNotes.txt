@@ -1,3 +1,8 @@
+NOTE On Running boxing_kata: I feel like I'm missing something obvious but I couldn't get 
+the filename from the command line arguments. I have instead hardcoded the command line
+argument in boxing_kata.rb and then proceeded on calling the necessary calls in Family and
+Box_Scheduler to be able to produced the boxes. 
+
 (1) First thing the program will need to do is to be able to load a provided input file.
 Once the file has been read in the family's brush preferences will need to be printed out. 
 Will need to store the following at this point. 
