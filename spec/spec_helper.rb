@@ -35,13 +35,13 @@ RSpec.describe BoxScheduler do
     @starWarsFamily.load_family_preferences(@preferences)
 
     expect(@scheduler.ship_starter_box(@starWarsFamily)).to eq(
-        "STARTER BOX\n" <<
+        "\nSTARTER BOX\n" <<
         "2 blue brushes\n" <<
         "2 blue replacement heads\n" <<
         "2 paste kits\n" <<
         "Schedule: 2018-01-01\n" <<
         "Mail Class: priority\n" <<
-        "STARTER BOX\n" <<
+        "\nSTARTER BOX\n" <<
         "1 pink brush\n" <<
         "1 pink replacement head\n" <<
         "1 green brush\n" <<
@@ -49,7 +49,7 @@ RSpec.describe BoxScheduler do
         "2 paste kits\n" <<
         "Schedule: 2018-01-01\n" <<
         "Mail Class: priority\n" <<
-        "STARTER BOX\n" <<
+        "\nSTARTER BOX\n" <<
         "1 green brush\n" <<
         "1 green replacement head\n" <<
         "1 paste kit\n" <<
@@ -62,13 +62,13 @@ RSpec.describe BoxScheduler do
     @smithFamily.load_family_preferences(@preferences)
 
     expect(@scheduler.ship_starter_box(@smithFamily)).to eq(
-        "STARTER BOX\n" <<
+        "\nSTARTER BOX\n" <<
         "2 red brushes\n" <<
         "2 red replacement heads\n" <<
         "2 paste kits\n" <<
         "Schedule: 2020-01-01\n" <<
         "Mail Class: priority\n" <<
-        "STARTER BOX\n" <<
+        "\nSTARTER BOX\n" <<
         "1 yellow brush\n" <<
         "1 yellow replacement head\n" <<
         "1 purple brush\n" <<
@@ -84,14 +84,14 @@ RSpec.describe BoxScheduler do
     @scheduler.ship_starter_box(@starWarsFamily)
 
     expect(@scheduler.ship_refill_boxes(@starWarsFamily)).to eq(
-        "REFILL BOX\n" <<
+        "\nREFILL BOX\n" <<
         "2 blue replacement heads\n" <<
         "1 pink replacement head\n" <<
         "1 green replacement head\n" <<
         "4 paste kits\n" <<
         "Schedule: 2018-04-01, 2018-06-30, 2018-09-28, 2018-12-27\n" <<
         "Mail Class: priority\n" <<
-        "REFILL BOX\n" <<
+        "\nREFILL BOX\n" <<
         "1 green replacement head\n" <<
         "1 paste kit\n" <<
         "Schedule: 2018-04-01, 2018-06-30, 2018-09-28, 2018-12-27\n" <<
@@ -109,13 +109,13 @@ RSpec.describe BoxScheduler do
     @smithFamily.load_family_preferences(@preferences)
 
     expect(@scheduler.ship_starter_box(@smithFamily)).to eq(
-        "STARTER BOX\n" <<
+        "\nSTARTER BOX\n" <<
         "2 red brushes\n" <<
         "2 red replacement heads\n" <<
         "2 paste kits\n" <<
         "Schedule: 2020-01-01\n" <<
         "Mail Class: priority\n" <<
-        "STARTER BOX\n" <<
+        "\nSTARTER BOX\n" <<
         "1 yellow brush\n" <<
         "1 yellow replacement head\n" <<
         "1 purple brush\n" <<
@@ -147,14 +147,14 @@ RSpec.describe BoxScheduler do
     @scheduler.ship_starter_box(@starWarsFamily)
 
     expect(@scheduler.ship_refill_boxes(@starWarsFamily)).to eq(
-        "REFILL BOX\n" <<
+        "\nREFILL BOX\n" <<
         "2 blue replacement heads\n" <<
         "1 pink replacement head\n" <<
         "1 green replacement head\n" <<
         "4 paste kits\n" <<
         "Schedule: 2018-04-01, 2018-06-30, 2018-09-28, 2018-12-27\n" <<
         "Mail Class: priority\n" <<
-        "REFILL BOX\n" <<
+        "\nREFILL BOX\n" <<
         "1 green replacement head\n" <<
         "1 paste kit\n" <<
         "Schedule: 2018-04-01, 2018-06-30, 2018-09-28, 2018-12-27\n" <<

@@ -13,7 +13,7 @@ class BoxScheduler
                 while preference[1] > 0 do
 
                     if brushes_in_box == 0 then
-                        starter_box_str << "STARTER BOX\n"
+                        starter_box_str << "\nSTARTER BOX\n"
 
                         if preference[1] >= 2 then
                             starter_box_str <<
@@ -66,12 +66,11 @@ class BoxScheduler
         if bursh_preferences != nil then
             refill_box_str = ""
             effective_date = Date.parse(family_data.get_contract_effective_date())
-            #refill_dates = compute_refill_dates(effective_date)
             bursh_preferences.each do |preference|
                 while preference[1] > 0 do
 
                     if items_in_box == 0 then
-                        refill_box_str << "REFILL BOX\n"
+                        refill_box_str << "\nREFILL BOX\n"
                     end
 
                     space_left = 4 - items_in_box
@@ -114,7 +113,6 @@ class BoxScheduler
     end
 
     def print_refill_dates(effective_date)
-        #effective_date = Date.parse(effective_date)
         refill_dates = compute_refill_dates(effective_date)
         refill_dates_str = "Schedule: " << refill_dates[0].to_s << ", " << 
                         refill_dates[1].to_s << ", " <<
