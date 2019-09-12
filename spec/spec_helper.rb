@@ -172,6 +172,11 @@ RSpec.describe BoxScheduler do
   it 'box with nothing in it will be shipped first class (no weight)' do
     expect(@scheduler.calculate_shipping_method(0, 0, 0)).to eq("first")
   end
+
+  it 'print_refill_dates prints the correct dates' do
+    expect(@scheduler.print_refill_dates(Date.new(2018, 1, 1))).to eq("Schedule: 2018-04-01, 2018-06-30, 2018-09-28, 2018-12-27\n")
+  end
+
 end
 
 # Family Class Tests
