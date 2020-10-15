@@ -1,0 +1,5 @@
+id,name,brush_color,primary_insured_id,contract_effective_date
+2,John,red,4,
+3,Jacob,yellow,4,
+4,Chris,red,,2020-01-01
+6,Wendy,purple,4,

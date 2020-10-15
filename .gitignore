@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Prerequisites
 *.d
 
@@ -39,3 +40,18 @@
 /x64/Debug
 /cluettkeDriverApp.bundle
 /cluettkeDriverApp
+=======
+/.bundle/
+/.yardoc
+/Gemfile.lock
+/_yardoc/
+/coverage/
+/doc/
+/pkg/
+/spec/reports/
+/tmp/
+
+# rspec failure tracking
+.rspec_status
+.byebug_history
+>>>>>>> 9507af05138cf02ea6982598fa64bfca2f7ad9cf

@@ -1,0 +1,63 @@
+NOTE On Running boxing_kata: I feel like I'm missing something obvious but I couldn't get 
+the filename from the command line arguments. I have instead hardcoded the command line
+argument in boxing_kata.rb and then proceeded on calling the necessary calls in Family and
+Box_Scheduler to be able to produced the boxes. 
+
+(1) First thing the program will need to do is to be able to load a provided input file.
+Once the file has been read in the family's brush preferences will need to be printed out. 
+Will need to store the following at this point. 
+	- Contract effective date (date starter box is shipped).
+	- Refill shipment dates (every 90 days after effective date, valid for 1 year). 
+
+(2) After the input file has been read then the functionality to create the starter boxes and
+the content they will contain will need to be created. Will need a test to check that a family
+with no preferences generates the 'NO STARTER BOXES GENERATED' message. 
+
+(3) Once a family has has received the starter boxes they will need to order refills.
+The program will remember the family's preferences and be able to provide the shipping manager
+with the correct color replacement heads. Will need to test that the error message is 
+generated if the family has not received a starter box. 
+
+(4) Members receive perks throughout their 1 year contract. This date is based off the contract
+effective date. Refills scheduled 90 days after that for the remainder of the year. Generate
+the ship date for each box shipped (starter and refill boxes). 
+
+(5) For each box shipped the weight of the brushes and rplacement heads will need to be 
+calculated. Boxes less than 16 oz will be first class. Boxes that weigh 16oz or more will 
+ship priority. Mail class should be printed with the box. 
+	- 1 brush weighs 9oz
+	- 1 replacement head weighs 1oz
+
+(6) For each brush or replacement head that is shiped a paste kit is also included which
+weighs 7.6oz which will have an impact on the mail class. 
+
+After all functionality is implemented the output for each box will look like the following:
+Example for a starter box:
+```
+STARTER BOX
+1 pink brushes
+1 pink replacement head
+1 paste kit
+Schedule: 2018-01-01
+Mail class: priority
+```
+
+Example for a refill box:
+```
+REFILL BOX
+1 pink replacement head
+1 paste kit
+Schedule: 2018-04-01, 2018-06-30, 2018-09-28, 2018-12-27
+Mail class: first
+```
+
+I decided to create a Family class which holds a family's details (brush preferences, contract effective date etc)
+I also created a BoxScheduler class which handles the generation of the starter and refill boxes along with the 
+scheduling of the shipments. The ultimate goal being that a family object could be provided to the boxScheduler which
+would access the family's details as necessary to generate all boxes to be shipped. 
+
+There is still some duplicate code and both ship_starter_box and ship_refill_boxes and both functions could be 
+refactored further. It may be better to create some standard Starter_box_output and refill_box_output that is
+more robust than just adding the content to a string but for this excercise I left it as just a string to keep
+things simple. 
+
